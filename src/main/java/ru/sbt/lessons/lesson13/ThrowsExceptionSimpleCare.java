@@ -1,4 +1,4 @@
-package ru.sbt.lesson13;
+package ru.sbt.lessons.lesson13;
 
 /**
  * Created by user on 15.09.2016.

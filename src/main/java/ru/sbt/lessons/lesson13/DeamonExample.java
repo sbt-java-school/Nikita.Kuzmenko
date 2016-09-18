@@ -1,9 +1,9 @@
-package ru.sbt.lesson13;
+package ru.sbt.lessons.lesson13;
 
 /**
  * Created by user on 15.09.2016.
  */
-public class SomeTask implements Runnable{
+public class DeamonExample implements Runnable{
 
     @Override
     public void run() {
@@ -12,4 +12,3 @@ public class SomeTask implements Runnable{
         }
     }
 }
-

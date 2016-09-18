@@ -1,9 +1,10 @@
-package ru.sbt.lesson13;
+package ru.sbt.lessons.lesson13;
 
 /**
  * Created by user on 15.09.2016.
  */
-public class MyThread extends Thread{
+public class SomeTask implements Runnable{
+
     @Override
     public void run() {
         for (int i = 0; i < 3; i++) {
@@ -11,3 +12,4 @@ public class MyThread extends Thread{
         }
     }
 }
+

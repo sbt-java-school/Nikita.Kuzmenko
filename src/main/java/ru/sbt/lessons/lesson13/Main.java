@@ -1,6 +1,4 @@
-package ru.sbt.lesson13;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
+package ru.sbt.lessons.lesson13;
 
 /**
  * Created by user on 15.09.2016.

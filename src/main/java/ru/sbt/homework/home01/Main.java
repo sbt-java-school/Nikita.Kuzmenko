@@ -5,7 +5,7 @@
 //        3. List<Number> list = new ArrayList<Integer>();
 //        4. List<Integer> list = new ArrayList<Number>();
 
-package ru.sbt.home01;
+package ru.sbt.homework.home01;
 
 import java.util.ArrayList;
 import java.util.List;
