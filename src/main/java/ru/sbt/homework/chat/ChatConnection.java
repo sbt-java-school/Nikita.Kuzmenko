@@ -1,10 +1,9 @@
 package ru.sbt.homework.chat;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.or.ThreadGroupRenderer;
-import sun.awt.windows.ThemeReader;
 
-import javax.xml.crypto.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Random;
@@ -20,7 +19,7 @@ public class ChatConnection implements Runnable {
     private BufferedWriter bufferedWriter;
     private int number;
 
-    private static final Logger logger = Logger.getLogger(ChatConnection.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChatConnection.class);
 
     public ChatConnection(Socket socket) {
         this.socket = socket;
@@ -41,16 +40,11 @@ public class ChatConnection implements Runnable {
             logger.info(Thread.currentThread().getName() + ", стартовал ...");
             String lineStr = null;
             String clientName = null;
-            //Выполняем цикл, пока поток не прерван
-//            while ((lineStr = bufferedReader.readLine()) != null && !Thread.currentThread().isInterrupted()) {
-//                logger.info(Thread.currentThread().getName() +" - Клиент прислал нам: " + lineStr);
-//
-//            }
             logger.info(Thread.currentThread().getName() + "я загадал: " +  number);
             clientName = bufferedReader.readLine();
-            logger.info(Thread.currentThread().getName() +" - Клиент прислал нам: " + clientName);
+            logger.info(Thread.currentThread().getName() + " - Клиент прислал нам: " + clientName);
 
-            while ((((lineStr = bufferedReader.readLine())) != null) && (Integer.parseInt(lineStr) != number)){
+            while ((lineStr = bufferedReader.readLine()) != null && Integer.parseInt(lineStr) != number){
                 logger.info(clientName + " прислал: " + lineStr);
                 bufferedWriter.write("no\n");
                 bufferedWriter.flush();
@@ -62,6 +56,5 @@ public class ChatConnection implements Runnable {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-
     }
 }

@@ -1,7 +1,5 @@
 package ru.sbt.homework.threads;
 
-import org.apache.log4j.Logger;
-
 /**
  * Created by Admin on 07.10.2016.
  */
