@@ -3,11 +3,10 @@ package ru.sbt.homework.chat;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,6 +17,8 @@ public class Server {
     private final ChatConnection[] threads;
     private static Logger logger = Logger.getLogger(Server.class);
     private static final int SERVER_PORT = 1234;
+    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(4, 10, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100));
+
 
     public Server(int nThreads, ChatConnection[] threads) {
         this.nThreads = nThreads;
@@ -26,14 +27,15 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT)) {
-            logger.info("Listen on " + SERVER_PORT);
             while (true) {
-                try (Socket clientSocket = serverSocket.accept()) {
-                    Thread thread = new Thread(new ChatConnection(clientSocket));
-                    thread.start();
-                    logger.info("Перенаправили сокет в новый поток с именем" + thread.getName());
-                }
+                logger.info("Слушаем порт " + SERVER_PORT);
+                Socket clientSocket = serverSocket.accept();
+//                Thread thread = new Thread(new ChatConnection(clientSocket));
+//                thread.start();
+                THREAD_POOL_EXECUTOR.execute(new ChatConnection(clientSocket));
+                logger.info("Перенаправили сокет в новый поток ...");
             }
         }
     }
 }
+
