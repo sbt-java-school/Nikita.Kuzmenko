@@ -1,4 +1,6 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.gadalka;
+
+import ru.sbt.homework.chat.messages.Message;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.gadalka;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
@@ -12,7 +11,7 @@ import java.net.Socket;
 public class Client implements Runnable {
     public static final String DEFAULT_HOST = "localhost";
     public static final int PORT = 1234;
-    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+    private static final Logger logger = Logger.getLogger(Client.class);
 
     @Override
     public void run() {

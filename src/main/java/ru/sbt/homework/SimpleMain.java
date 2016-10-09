@@ -1,12 +1,11 @@
 package ru.sbt.homework;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 public class SimpleMain {
 
-    private static final Logger logger = LoggerFactory.getLogger(SimpleMain.class);
+    private static final Logger logger = Logger.getLogger(SimpleMain.class);
 
     public static void main(String[] args) {
         for(int i = 0; i < 3; i++) {

@@ -1,4 +1,4 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.gadalka;
 
 /**
  * Стартует/Останавливает сервер

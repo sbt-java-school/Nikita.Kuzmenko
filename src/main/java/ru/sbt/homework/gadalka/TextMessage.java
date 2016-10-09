@@ -1,7 +1,6 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.gadalka;
 
-import java.util.Collections;
-import java.util.List;
+import ru.sbt.homework.chat.messages.Message;
 
 /**
  * Created by Admin on 01.10.2016.
@@ -19,9 +18,14 @@ public class TextMessage implements Message {
     }
 
     @Override
-    public List<Object> getContent() {
-        return Collections.emptyList();
+    public String getSender() {
+        return null;
     }
+
+//    @Override
+//    public List<Object> getContent() {
+//        return Collections.emptyList();
+//    }
 
     @Override
     public String getAddressee() {
