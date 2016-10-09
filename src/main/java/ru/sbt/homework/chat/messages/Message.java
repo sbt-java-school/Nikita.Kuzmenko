@@ -1,4 +1,4 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.chat.messages;
 
 import java.util.List;
 
@@ -8,7 +8,5 @@ import java.util.List;
 public interface Message {
     String getText();
 
-    List<Object> getContent();
-
-    String getAddressee();
+    String getSender();
 }
