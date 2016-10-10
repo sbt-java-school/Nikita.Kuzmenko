@@ -16,12 +16,8 @@ public class ImageMessage implements Message {
     }
 
     @Override
-    public List<Object> getContent() {
+    public String getSender() {
         return null;
     }
 
-    @Override
-    public String getAddressee() {
-        return null;
-    }
 }

@@ -21,14 +21,4 @@ public class TextMessage implements Message {
     public String getSender() {
         return null;
     }
-
-//    @Override
-//    public List<Object> getContent() {
-//        return Collections.emptyList();
-//    }
-
-    @Override
-    public String getAddressee() {
-        return null;
-    }
 }

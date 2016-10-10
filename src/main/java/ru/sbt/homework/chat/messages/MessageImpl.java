@@ -7,7 +7,7 @@ public class MessageImpl implements Message{
     private String text;
     private String sender;
 
-    MessageImpl (String sender, String text){
+    public MessageImpl (String sender, String text){
         this.sender = sender;
         this.text = text;
     }

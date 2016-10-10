@@ -10,7 +10,7 @@ import java.net.Socket;
  */
 public class Client implements Runnable {
     public static final String DEFAULT_HOST = "localhost";
-    public static final int PORT = 1234;
+    public static final int PORT = 8085;
     private static final Logger logger = Logger.getLogger(Client.class);
 
     @Override
