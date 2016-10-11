@@ -24,6 +24,11 @@ public class MultipleMapImpl<K, V> implements MultipleMap<K, V> {
     }
 
     @Override
+    public void del(K key) {
+        this.Vs.remove(key);
+    }
+
+    @Override
     public List<V> get(K key) {
         return Vs.get(key);
     }

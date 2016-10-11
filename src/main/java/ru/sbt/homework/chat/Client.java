@@ -19,7 +19,7 @@ public class Client {
 
     public static void main(String[] args) {
         String name;
-        //Чтение из консоли
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader bufferedReader;
         BufferedWriter bufferedWriter;

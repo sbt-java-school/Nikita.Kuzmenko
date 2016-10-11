@@ -34,14 +34,11 @@ public class ClientForMulti implements Runnable {
             bufferedWriter.write(name + "\n");
             bufferedWriter.flush();
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 10; i++) {
                 bufferedWriter.write("test10>>" + lineStr + " " + i + "\n");
                 bufferedWriter.flush();
             }
-//            while (!lineStr.equals("exit")) {
-//                bufferedWriter.write(lineStr + "\n");
-//                bufferedWriter.flush();
-//            }
+
         } catch (Exception e) {
             logger.error(e);
         }

@@ -23,7 +23,7 @@ public class ChatConnection implements Runnable {
     private String clientName;
     private String lineStr;
 
-    ParseText parseText;
+    private ParseText parseText;
 
     public ChatConnection(Socket clientSocket, DataStorageImpl dataStorage) {
         this.socket = clientSocket;
@@ -50,6 +50,7 @@ public class ChatConnection implements Runnable {
                     }
                     bufferedWriter.write("endMessage\n");
                     bufferedWriter.flush();
+                    dataStorage.remove(clientName);
                 } else {
                     parseText = new ParseText(lineStr);
                     dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
@@ -57,7 +58,8 @@ public class ChatConnection implements Runnable {
             }
             logger.info("Клиент " + clientName + " закрыл соединение ...");
         } catch (Exception e) {
-            logger.error(e.getMessage());
+//            logger.error(e.getMessage());
+            e.printStackTrace();
         }
 
 //        for (int i = 0; i < 10; i++) {
@@ -70,5 +72,5 @@ public class ChatConnection implements Runnable {
 //            }
 //        }
 //        logger.debug(Thread.currentThread().getName() +  " завершил работу");
-}
+    }
 }

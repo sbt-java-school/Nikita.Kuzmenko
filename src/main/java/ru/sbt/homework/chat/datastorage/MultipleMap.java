@@ -8,6 +8,8 @@ import java.util.List;
 public interface MultipleMap<K, V> {
     void put(K key, V value);
 
+    void del(K key);
+
     List<V> get(K key);
 
     List<V> getAll();
