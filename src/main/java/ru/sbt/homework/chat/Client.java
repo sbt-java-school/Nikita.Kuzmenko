@@ -49,8 +49,10 @@ public class Client {
                         logger.info(lineStr);
                     }
                 }
-                bufferedWriter.write(lineStr + "\n");
-                bufferedWriter.flush();
+                else {
+                    bufferedWriter.write(lineStr + "\n");
+                    bufferedWriter.flush();
+                }
 
             }
         } catch (Exception e) {

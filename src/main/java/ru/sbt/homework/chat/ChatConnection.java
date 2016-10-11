@@ -43,24 +43,23 @@ public class ChatConnection implements Runnable {
             logger.info("Клиент " + clientName + " присоединился ...");
             while ((lineStr = bufferedReader.readLine()) != null && !lineStr.equals("exit")) {
                 if (lineStr.equals("getMessage")) {
-                    //logger.info("Клиент " + clientName + " прислал нам: " + lineStr);
+                    logger.info("Клиент " + clientName + " просит выслать ему все сообщения...");
                     for (Message message : dataStorage.getMessage(clientName)) {
                         bufferedWriter.write(message.getSender() + "<<" + message.getText() + "\n");
                         bufferedWriter.flush();
                     }
                     bufferedWriter.write("endMessage\n");
                     bufferedWriter.flush();
-                } else if ((parseText = new ParseText(lineStr)).checkCreateParseText()) {
-                    dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
-                    parseText.checkCreateParseText();
                 } else {
-                    logger.error("Данные ввыдены не корректно!");
+                    parseText = new ParseText(lineStr);
+                    dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
                 }
             }
             logger.info("Клиент " + clientName + " закрыл соединение ...");
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
+
 //        for (int i = 0; i < 10; i++) {
 //            dataStorage.put(Thread.currentThread().getName(), new MessageImpl(Thread.currentThread().getName(), "отправили " + i));
 //            logger.debug(Thread.currentThread().getName() +  " отправили " + i);
@@ -71,5 +70,5 @@ public class ChatConnection implements Runnable {
 //            }
 //        }
 //        logger.debug(Thread.currentThread().getName() +  " завершил работу");
-    }
+}
 }
