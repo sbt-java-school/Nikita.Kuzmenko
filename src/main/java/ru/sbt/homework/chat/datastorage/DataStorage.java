@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface DataStorage {
     void put(String recipient, Message message);
+    void remove(String recipient);
     List<Message> getMessage(String recipient);
 }

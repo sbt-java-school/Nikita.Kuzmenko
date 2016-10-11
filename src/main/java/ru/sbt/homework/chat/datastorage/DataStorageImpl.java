@@ -2,6 +2,7 @@ package ru.sbt.homework.chat.datastorage;
 
 import ru.sbt.homework.chat.messages.Message;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,7 +17,13 @@ public class DataStorageImpl implements DataStorage {
     }
 
     @Override
+    public void remove(String recipient) {
+        multipleMap.del(recipient);
+    }
+
+    @Override
     public List<Message> getMessage(String recipient) {
-        return multipleMap.get(recipient);
+        List<Message> messages = multipleMap.get(recipient);
+        return messages == null ? Collections.emptyList() : messages;
     }
 }
