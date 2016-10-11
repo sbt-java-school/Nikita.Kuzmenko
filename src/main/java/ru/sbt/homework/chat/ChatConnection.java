@@ -2,6 +2,8 @@ package ru.sbt.homework.chat;
 
 import org.apache.log4j.Logger;
 import ru.sbt.homework.chat.datastorage.DataStorageImpl;
+import ru.sbt.homework.chat.messages.ParseText;
+import ru.sbt.homework.chat.messages.Message;
 import ru.sbt.homework.chat.messages.MessageImpl;
 
 import java.io.*;
@@ -18,7 +20,10 @@ public class ChatConnection implements Runnable {
 
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    private int number;
+    private String clientName;
+    private String lineStr;
+
+    ParseText parseText;
 
     public ChatConnection(Socket clientSocket, DataStorageImpl dataStorage) {
         this.socket = clientSocket;
@@ -33,10 +38,38 @@ public class ChatConnection implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
-            dataStorage.put("test" + i, new MessageImpl(Thread.currentThread().getName(), "отправили " + i));
-            logger.debug(Thread.currentThread().getName() +  " отправили " + i);
+        try {
+            clientName = bufferedReader.readLine();
+            logger.info("Клиент " + clientName + " присоединился ...");
+            while ((lineStr = bufferedReader.readLine()) != null && !lineStr.equals("exit")) {
+                if (lineStr.equals("getMessage")) {
+                    //logger.info("Клиент " + clientName + " прислал нам: " + lineStr);
+                    for (Message message : dataStorage.getMessage(clientName)) {
+                        bufferedWriter.write(message.getSender() + "<<" + message.getText() + "\n");
+                        bufferedWriter.flush();
+                    }
+                    bufferedWriter.write("endMessage\n");
+                    bufferedWriter.flush();
+                } else if ((parseText = new ParseText(lineStr)).checkCreateParseText()) {
+                    dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
+                    parseText.checkCreateParseText();
+                } else {
+                    logger.error("Данные ввыдены не корректно!");
+                }
+            }
+            logger.info("Клиент " + clientName + " закрыл соединение ...");
+        } catch (IOException e) {
+            logger.error(e.getMessage());
         }
-        logger.debug(Thread.currentThread().getName() +  " завершил работу");
+//        for (int i = 0; i < 10; i++) {
+//            dataStorage.put(Thread.currentThread().getName(), new MessageImpl(Thread.currentThread().getName(), "отправили " + i));
+//            logger.debug(Thread.currentThread().getName() +  " отправили " + i);
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                logger.error(e.getMessage());
+//            }
+//        }
+//        logger.debug(Thread.currentThread().getName() +  " завершил работу");
     }
 }
