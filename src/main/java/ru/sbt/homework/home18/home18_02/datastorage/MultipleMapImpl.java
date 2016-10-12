@@ -29,10 +29,7 @@ public class MultipleMapImpl<K, V> implements MultipleMap<K, V> {
     //Удаление всех сообщений
     @Override
     public void delAll() {
-        Iterator<Map.Entry<K, List<V>>> multipleMapIterator = this.Vs.entrySet().iterator();
-        while (multipleMapIterator.hasNext()){
-            this.Vs.remove(multipleMapIterator.next());
-        }
+            this.Vs.clear();
     }
 
     //Удаление всех сообщений по ключу (получатель)
