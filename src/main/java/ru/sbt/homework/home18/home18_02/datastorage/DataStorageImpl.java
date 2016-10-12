@@ -24,6 +24,11 @@ public class DataStorageImpl implements DataStorage {
     }
 
     @Override
+    public void clear() {
+        multipleMap.delAll();
+    }
+
+    @Override
     public List<Message> getMessage(String recipient) {
         List<Message> messages = multipleMap.get(recipient);
         return messages == null ? Collections.emptyList() : messages;

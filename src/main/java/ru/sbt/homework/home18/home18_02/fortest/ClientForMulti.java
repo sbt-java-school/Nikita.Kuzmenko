@@ -1,8 +1,10 @@
-package ru.sbt.homework.home18.home18_02;
+package ru.sbt.homework.home18.home18_02.fortest;
 
 import org.apache.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
@@ -22,18 +24,23 @@ public class ClientForMulti implements Runnable {
     @Override
     public void run() {
         BufferedWriter bufferedWriter;
+        BufferedReader bufferedReader;
 
         try (Socket socket = new Socket(DEFAULT_HOST, PORT)) {
 
+
             String lineStr = "Привет от пользователя " + name;
 
+            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            bufferedReader.readLine();
 
             bufferedWriter.write(name + "\n");
             bufferedWriter.flush();
 
             for (int i = 0; i < 10; i++) {
-                bufferedWriter.write("test10>>" + lineStr + " " + i + "\n");
+                bufferedWriter.write("test10<<" + lineStr + " " + i + "\n");
                 bufferedWriter.flush();
             }
 

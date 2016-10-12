@@ -53,7 +53,8 @@ public class ChatConnection implements Runnable {
                     bufferedWriter.write("endMessage\n");
                     bufferedWriter.flush();
                     dataStorage.remove(clientName);
-                } else {
+                }
+                else {
                     parseText = new ParseText(lineStr, "<<");
                     dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
                 }
