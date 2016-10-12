@@ -1,4 +1,4 @@
-package ru.sbt.homework.gadalka;
+package ru.sbt.homework.home18.home18_01;
 
 import org.apache.log4j.Logger;
 
@@ -36,8 +36,8 @@ public class ChatConnection implements Runnable {
     public void run() {
         try {
             logger.info(Thread.currentThread().getName() + ", стартовал ...");
-            String lineStr = null;
-            String clientName = null;
+            String lineStr;
+            String clientName;
             logger.info(Thread.currentThread().getName() + "я загадал: " +  number);
             clientName = bufferedReader.readLine();
             logger.info(Thread.currentThread().getName() + " - Клиент прислал нам: " + clientName);

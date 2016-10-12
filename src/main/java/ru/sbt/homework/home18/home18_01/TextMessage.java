@@ -1,6 +1,6 @@
-package ru.sbt.homework.gadalka;
+package ru.sbt.homework.home18.home18_01;
 
-import ru.sbt.homework.chat.messages.Message;
+import ru.sbt.homework.home18.home18_02.messages.Message;
 
 /**
  * Created by Admin on 01.10.2016.

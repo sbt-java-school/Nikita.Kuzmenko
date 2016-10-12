@@ -1,11 +1,11 @@
-package ru.sbt.homework.chat.datastorage;
+package ru.sbt.homework.home18.home18_02.datastorage;
 
-import ru.sbt.homework.chat.messages.Message;
+import ru.sbt.homework.home18.home18_02.messages.Message;
 
 import java.util.List;
 
 /**
- * Created by Admin on 08.10.2016.
+ * Интерфейс для работы с хранилищем данных
  */
 public interface DataStorage {
     void put(String recipient, Message message);

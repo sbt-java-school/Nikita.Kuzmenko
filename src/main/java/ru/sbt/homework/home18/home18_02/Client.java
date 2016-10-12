@@ -1,4 +1,4 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.home18.home18_02;
 
 import org.apache.log4j.Logger;
 
@@ -31,7 +31,7 @@ public class Client {
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            System.out.print("Введите ваше имя: ");
+            System.out.print(bufferedReader.readLine());
             name = reader.readLine();
 
 
@@ -39,21 +39,19 @@ public class Client {
             bufferedWriter.flush();
 
             while (!lineStr.equals("exit")) {
-                System.out.println("Введите отправителя, затем знак >> и введите текст: ");
+                System.out.println("Введите отправителя, затем знак << и введите текст");
                 lineStr = reader.readLine();
                 if (lineStr.equals("getMessage")) {
                     bufferedWriter.write(lineStr + "\n");
                     bufferedWriter.flush();
-                    while (!lineStr.equals("endMessage")) {
-                        lineStr = bufferedReader.readLine();
-                        logger.info(lineStr);
+                    while (!(lineStr = bufferedReader.readLine()).equals("endMessage")) {
+                        System.out.println(lineStr);
                     }
                 }
                 else {
                     bufferedWriter.write(lineStr + "\n");
                     bufferedWriter.flush();
                 }
-
             }
         } catch (Exception e) {
             logger.error(e);

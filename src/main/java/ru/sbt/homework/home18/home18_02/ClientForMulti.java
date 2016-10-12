@@ -1,10 +1,8 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.home18.home18_02;
 
 import org.apache.log4j.Logger;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 

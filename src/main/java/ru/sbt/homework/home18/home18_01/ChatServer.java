@@ -1,4 +1,4 @@
-package ru.sbt.homework.gadalka;
+package ru.sbt.homework.home18.home18_01;
 
 /**
  * Стартует/Останавливает сервер

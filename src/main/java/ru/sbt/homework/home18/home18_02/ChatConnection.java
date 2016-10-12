@@ -1,16 +1,16 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.home18.home18_02;
 
 import org.apache.log4j.Logger;
-import ru.sbt.homework.chat.datastorage.DataStorageImpl;
-import ru.sbt.homework.chat.messages.ParseText;
-import ru.sbt.homework.chat.messages.Message;
-import ru.sbt.homework.chat.messages.MessageImpl;
+import ru.sbt.homework.home18.home18_02.datastorage.DataStorageImpl;
+import ru.sbt.homework.home18.home18_02.messages.ParseText;
+import ru.sbt.homework.home18.home18_02.messages.Message;
+import ru.sbt.homework.home18.home18_02.messages.MessageImpl;
 
 import java.io.*;
 import java.net.Socket;
 
 /**
- * Created by Admin on 09.10.2016.
+ * Сервер для приема и передачи данных по указанному сокету
  */
 public class ChatConnection implements Runnable {
 
@@ -39,38 +39,28 @@ public class ChatConnection implements Runnable {
     @Override
     public void run() {
         try {
+            bufferedWriter.write("Введите ваше имя: \n");
+            bufferedWriter.flush();
             clientName = bufferedReader.readLine();
             logger.info("Клиент " + clientName + " присоединился ...");
             while ((lineStr = bufferedReader.readLine()) != null && !lineStr.equals("exit")) {
                 if (lineStr.equals("getMessage")) {
                     logger.info("Клиент " + clientName + " просит выслать ему все сообщения...");
                     for (Message message : dataStorage.getMessage(clientName)) {
-                        bufferedWriter.write(message.getSender() + "<<" + message.getText() + "\n");
+                        bufferedWriter.write(message.getSender() + " >> " + message.getText() + "\n");
                         bufferedWriter.flush();
                     }
                     bufferedWriter.write("endMessage\n");
                     bufferedWriter.flush();
                     dataStorage.remove(clientName);
                 } else {
-                    parseText = new ParseText(lineStr);
+                    parseText = new ParseText(lineStr, "<<");
                     dataStorage.put(parseText.getRecipient(), new MessageImpl(clientName, parseText.getText()));
                 }
             }
             logger.info("Клиент " + clientName + " закрыл соединение ...");
         } catch (Exception e) {
-//            logger.error(e.getMessage());
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
-
-//        for (int i = 0; i < 10; i++) {
-//            dataStorage.put(Thread.currentThread().getName(), new MessageImpl(Thread.currentThread().getName(), "отправили " + i));
-//            logger.debug(Thread.currentThread().getName() +  " отправили " + i);
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                logger.error(e.getMessage());
-//            }
-//        }
-//        logger.debug(Thread.currentThread().getName() +  " завершил работу");
     }
 }

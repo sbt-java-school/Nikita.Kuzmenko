@@ -1,7 +1,7 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework.home18.home18_02;
 
 import org.apache.log4j.Logger;
-import ru.sbt.homework.chat.datastorage.DataStorageImpl;
+import ru.sbt.homework.home18.home18_02.datastorage.DataStorageImpl;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,12 +11,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Admin on 09.10.2016.
+ * Главный сервер, который принимает соединения и перенаправляет всю дальнейшую работу в другой поток.
+ * Для ограничения количества одновременных соединений имеет пул потоков THREAD_POOL_EXECUTOR.
  */
 public class Server {
-    private static Logger logger = Logger.getLogger(ru.sbt.homework.gadalka.Server.class);
+    private static Logger logger = Logger.getLogger(ru.sbt.homework.home18.home18_01.Server.class);
     public static final int SERVER_PORT = 8085;
-    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(4, 10, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100));
+    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(4, 10, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<>(100));
     private static DataStorageImpl dataStorage = new DataStorageImpl();
 
     public static void main(String[] args) throws IOException {

@@ -1,6 +1,6 @@
-package ru.sbt.homework.chat;
+package ru.sbt.homework;
 
-import ru.sbt.homework.chat.messages.ParseText;
+import ru.sbt.homework.home18.home18_02.messages.ParseText;
 
 import java.io.*;
 
@@ -13,7 +13,7 @@ public class Test {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         ParseText parseText;
         String strLine = "";
-        Integer.parseInt("три");
+        System.out.println("три");
 
 //        while (!strLine.equals("exit")) {
 //            try {

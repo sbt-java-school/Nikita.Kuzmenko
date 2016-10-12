@@ -1,4 +1,4 @@
-package ru.sbt.homework.gadalka;
+package ru.sbt.homework.home18.home18_01;
 
 import org.apache.log4j.Logger;
 
@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class Server {
     private static Logger logger = Logger.getLogger(Server.class);
     public static final int SERVER_PORT = 1234;
-    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(4, 10, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100));
+    private static final int MAX_COUNT_OF_THREADS = 10;
+    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(4, MAX_COUNT_OF_THREADS, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100));
 
     public static void main(String[] args) throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT)) {
